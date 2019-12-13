@@ -1,0 +1,34 @@
+---
+- hosts: all
+  name: file playbook to add a directory and touch a file
+  tasks:
+
+    - name: Create a directory if it does not exist
+      file:
+        path: /etc/zzz_created_directory
+        state: directory
+        mode: '0755'
+
+    - name: Create a directory if it does not exist
+      file:
+        path: /etc/zzz_created_directory_to_be_deleted
+        state: directory
+        mode: '0755'
+
+    - name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+      file:
+        path: /etc/zzz_created_directory/test.txt
+        state: touch
+        mode: '0644'
+
+    - name: Update modification and access time of given file
+      file:
+        path: /etc/zzz_created_directory/test.txt
+        state: file
+        modification_time: now
+        access_time: now
+
+    - name: Remove file (delete file)
+      file:
+        path: /etc/zzz_created_directory_to_be_deleted
+        state: absent
