@@ -1,0 +1,55 @@
+---
+- hosts: all
+  tasks:
+
+    - name: Set the hostname of the BIG-IP
+      bigip_hostname:
+        hostname: bigip.localhost.localdomain
+        provider:
+          user: admin
+          password: BH!026bh
+          server: 192.168.108.133
+          validate_certs: no
+      delegate_to: localhost
+
+    - name: Set NTP server
+      bigip_device_ntp:
+        ntp_servers:
+          - 66.228.58.20
+          - 198.46.248.36
+        provider:
+          password: BH!026bh
+          server: 192.168.108.133
+          user: admin
+          validate_certs: no
+      delegate_to: localhost
+
+    - name: Set timezone
+      bigip_device_ntp:
+        timezone: America/Chicago
+        provider:
+          password: BH!026bh
+          server: 192.168.108.133
+          user: admin
+          validate_certs: no
+      delegate_to: localhost
+
+    - name: Set snmp contact
+      bigip_snmp:
+        contact: Joe User
+        provider:
+          password: BH!026bh
+          server: 192.168.108.133
+          user: admin
+          validate_certs: no
+      delegate_to: localhost
+
+    - name: Set snmp location
+      bigip_snmp:
+        location: US West 1
+        provider:
+          password: BH!026bh
+          server: 192.168.108.133
+          user: admin
+          validate_certs: no
+      delegate_to: localhost

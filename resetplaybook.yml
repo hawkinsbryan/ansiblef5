@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+
+    - name: Reset the BIG-IP configuration
+      bigip_config:
+        reset: yes
+        save: yes
+        provider: "{{provider_info}}"
+      delegate_to: localhost

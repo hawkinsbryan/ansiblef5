@@ -1,0 +1,72 @@
+---
+- hosts: all
+  name: updating playbook to use group_vars
+  tasks:
+
+    - name: Set the hostname of the BIG-IP to different from original playbook
+      bigip_hostname:
+        hostname: bigip.hostname
+        provider: "{{vault_provider_info}}"
+      delegate_to: localhost
+
+    - name: Set NTP server using variables
+      bigip_device_ntp:
+        ntp_servers:
+          - 3.us.pool.ntp.org
+        provider: "{{vault_provider_info}}"
+      delegate_to: localhost
+
+    - name: Set timezone
+      bigip_device_ntp:
+        timezone: America/Los_Angeles
+        provider: "{{vault_provider_info}}"
+      delegate_to: localhost
+
+    - name: Set snmp contact
+      bigip_snmp:
+        contact: John Smith
+        provider: "{{vault_provider_info}}"
+      delegate_to: localhost
+
+    - name: Set snmp location
+      bigip_snmp:
+        location: US East 3
+        provider: "{{vault_provider_info}}"
+      delegate_to: localhost
+
+    - name: Set the banner for the SSHD service from a string
+      bigip_device_sshd:
+        banner: enabled
+        banner_text: THIS IS THE BANNER TEXT FROM SECOND PLAYBOOK
+        provider: "{{vault_provider_info}}"
+      delegate_to: localhost
+
+    - name: Collect BIG-IP information on interfaces and vlans
+      bigip_device_info:
+        gather_subset:
+          - interfaces
+          - vlans
+        provider: "{{vault_provider_info}}"
+      delegate_to: localhost
+
+    - name: Collect all BIG-IP information
+      bigip_device_info:
+        gather_subset:
+          - all
+        provider: "{{vault_provider_info}}"
+      delegate_to: localhost
+
+    - name: Collect all BIG-IP information except trunks
+      bigip_device_info:
+        gather_subset:
+          - all
+          - "!trunks"
+        provider: "{{vault_provider_info}}"
+      delegate_to: localhost
+
+    - name: Save the running configuration of the BIG-IP
+      bigip_config:
+        save: yes
+        provider: "{{vault_provider_info}}"
+      delegate_to: localhost
+
