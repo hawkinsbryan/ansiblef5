@@ -21,7 +21,7 @@
         state: touch
         mode: '0644'
 
-    - name: Update modification and access time of given file
+    - name: Update modifications and access time of given file
       file:
         path: /etc/zzz_created_directory/test.txt
         state: file
