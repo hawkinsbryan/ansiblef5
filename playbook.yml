@@ -7,8 +7,8 @@
         hostname: bigip.localhost.localdomain
         provider:
           user: admin
-          password: BH!026bh
-          server: 192.168.108.133
+          password: bigip1234
+          server: 192.168.108.135
           validate_certs: no
       delegate_to: localhost
 
@@ -18,8 +18,8 @@
           - 66.228.58.20
           - 198.46.248.36
         provider:
-          password: BH!026bh
-          server: 192.168.108.133
+          password: bigip1234
+          server: 192.168.108.135
           user: admin
           validate_certs: no
       delegate_to: localhost
@@ -28,8 +28,8 @@
       bigip_device_ntp:
         timezone: America/Chicago
         provider:
-          password: BH!026bh
-          server: 192.168.108.133
+          password: bigip1234
+          server: 192.168.108.135
           user: admin
           validate_certs: no
       delegate_to: localhost
@@ -38,8 +38,8 @@
       bigip_snmp:
         contact: Joe User
         provider:
-          password: BH!026bh
-          server: 192.168.108.133
+          password: bigip1234
+          server: 192.168.108.135
           user: admin
           validate_certs: no
       delegate_to: localhost
@@ -48,8 +48,8 @@
       bigip_snmp:
         location: US West 1
         provider:
-          password: BH!026bh
-          server: 192.168.108.133
+          password: bigip1234
+          server: 192.168.108.135
           user: admin
           validate_certs: no
       delegate_to: localhost

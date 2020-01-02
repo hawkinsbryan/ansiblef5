@@ -1,7 +1,7 @@
 ---
 provider_info:
-  password: BH!026bh
-  server: 192.168.108.133
+  password: bigip1234
+  server: 192.168.108.135
   user: admin
   validate_certs: no
 
